@@ -1,0 +1,86 @@
+//declaring variables 
+
+$color1: rgb(255, 255, 74);
+$color2: rgb(23, 23, 23);
+$color3: rgb(215, 204, 0);
+body {  
+background-color: $color1;
+}
+
+$colors: rgb(255, 255, 74), rgb(23, 23, 23);
+body {
+background-color: nth($colors, 1);
+}
+
+//nesting
+.productCard {
+    max-width: 600px;
+    background-color: red;
+    > a {
+        color: blue;
+    }
+    > h2 {
+        color: pink;
+    }
+}
+
+@import "_colors";
+@import "_colors2";
+@use "_colors" as color;
+
+$red: rgb(237, 43, 43);
+$blue: rgb(85, 85, 238);
+$pink: rgb(237, 112, 133);
+
+.productCard {
+    max-width: 600px;
+    background-color: $red;
+    > a {
+        color: $blue;
+    }
+    > h2 {
+        color: $pink;
+    }
+}
+
+.productCard {
+    max-width: 600px;
+    background-color: color.$red;
+    > a {
+        color: color.$blue;
+    }
+    > h2 {
+        color: color.$pink;
+    }
+}
+
+button {
+    background-color: color.$red;
+    padding: 1rem 2rem;
+    border: none;
+    cursor: pointer;
+}
+
+p {
+    @extend button;
+}
+
+%custom {
+    background-color: color.$red;
+    padding: 1rem 2rem;
+    border: none;
+    cursor: pointer;
+}
+
+p1 {
+    @extend %custom;
+    background-color: green ;
+}
+
+p2 {
+    @extend %custom;
+}
+
+p3 {
+    @extend %custom;
+}
